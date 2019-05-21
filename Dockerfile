@@ -9,6 +9,7 @@ RUN set -x \
 && apt-get update \
 && apt-get install -y python-pip python-dev \
 && apt-get install -y libsm6 libxrender1 libfontconfig1 libxext6 libglib2.0-0\
+&& apt-get install -y vim \
 && cd /usr/local/bin \
 && ln -s /usr/bin/python python \
 && pip install --upgrade pip
