@@ -1,22 +1,20 @@
-FROM ubuntu:latest
+FROM nvidia/cuda:8.0-cudnn6-runtime
 
 # config settings
 RUN mkdir -p /config
 ADD requirements.txt /config
 
-### setup python3.6 & opencv
+### setup python2.7 & opencv
 RUN set -x \
 && apt-get update \
-&& apt-get install -y python3-pip python3-dev \
-&& apt-get install -y libsm6 libxrender1 libfontconfig1 libxext6 \
+&& apt-get install -y python-pip python-dev \
+&& apt-get install -y libsm6 libxrender1 libfontconfig1 libxext6 libglib2.0-0\
 && cd /usr/local/bin \
-&& ln -s /usr/bin/python3 python \
-&& pip3 install --upgrade pip
+&& ln -s /usr/bin/python python \
+&& pip install --upgrade pip
 
 RUN set -x \
-&& pip3 install opencv-python \
-&& pip3 install opencv-contrib-python \
-&& pip3 install -r /config/requirements.txt
+&& pip install -r /config/requirements.txt
 
 ### setup ubuntu-desktop
 #RUN apt-get install ubuntu-desktop
